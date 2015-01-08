@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}">
+                    <h:form id="predmet" >
+                        <p:panel header="Podaci o predmetu za koji se unosi rociste" style="width:600px; margin-left: 20px;" >
+                            <table id="podaci_predmet">
+                                <tbody>
+                                    <tr >
+                                        <td style="padding-left: 100px;"> <h:outputText value="ID predmeta: " /></td>
+                                        <td><p:inputText style="width: 200px; margin-left: 10px;" disabled="true" value="#{zajednickiBean.selektovaniPredmet.predmetID}"/></td>
+                                    </tr>
+                                    <tr >
+                                        <td style="padding-left: 100px;"> <h:outputText value="Datum predmeta: " /></td>
+                                        <td><p:inputText style="width: 200px; margin-left: 10px;" disabled="true" value="#{zajednickiBean.selektovaniPredmet.datum}" converter="datumKonverter"  /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 100px;"><h:outputText value="Klijent:" /></td>
+                                        <td><p:inputText style="width: 200px; margin-left: 10px;" disabled="true" value="#{zajednickiBean.selektovaniPredmet.klijentID.toString()}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 100px;"> <h:outputText value="Advokat:" /></td>
+                                        <td> <p:inputText style="width: 200px; margin-left: 10px;" disabled="true" value="#{zajednickiBean.selektovaniPredmet.advokatID.toString()}" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p:panel>
+                        <p:panel header="Podaci o novom rocistu" style="width:600px; margin-left: 20px;">
+                            <table id="podaci_rociste">
+                                <tbody>
+                             
+                                     <tr>
+                                        <td style="padding-left: 100px;">
+                                            <h:outputText value="Datum:" />
+                                        </td>
+                                        <td>
+                                            <p:calendar style="width: 200px; margin-left: 50px;" pattern="dd.MM.yyyy" value="#{rocisteBean.rociste.datumRocista}" required="true" requiredMessage="Datum je obavezno polje"  />
+                                        </td>
+                                    </tr>
+                                    
+                                     <tr>
+                                        <td style="padding-left: 100px;">
+                                            <h:outputText value="Vreme:"  />                                                                               
+                                        </td>
+                                        <td >
+                                            <p:spinner style="width: 60px; margin-left: 50px;" min="8" max="17" value="#{rocisteBean.sat}" />
+                                            <p:spinner min="0" max="59" style="padding-left: 10px;" value="#{rocisteBean.min}" />
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                       <td style="padding-left: 100px;">
+                                            <h:outputText value="Sud:"  />                                                                               
+                                        </td>
+                                        <td>
+                                            <p:selectOneMenu id="sud" style="width:200px;  margin-left: 50px;" value="#{rocisteBean.rociste.sudID}" converter="sudKonverter">
+                                                <f:selectItems value="#{sudBean.vratiSudove()}" var="sud" itemLabel="#{sud.nazivSuda}" itemValue="#{sud}">    
+                                                </f:selectItems>
+                                            </p:selectOneMenu>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 100px;">
+                                            <h:outputText value="Napomena:"  />                                                                               
+                                        </td>
+                                        <td >
+                                            <p:inputTextarea style="width: 200px; margin-left: 50px;" value="#{rocisteBean.rociste.napomena}" required="true" requiredMessage="Napomena je obavezno polje"  />
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                             <p:commandButton immediate="true" style="width: 130px; margin-left: 50px;" action="#{rocisteBean.pokreniDodavanje()}" value="Dodaj stavku" oncomplete="dodajStavku.show();" update=":forma" />
+                            <p:dataTable id="stavke" value="#{rocisteBean.rociste.stavkarocistaCollection}" var="stavka" style="margin-top:10px;" emptyMessage="Trenutno nema stavki" selectionMode="single" selection="#{rocisteBean.selektovanaStavka}" rowKey="#{stavka.stavkarocistaPK.rb}">
+
+                                <p:column  headerText="RB" >
+                                    <h:outputText value="#{stavka.stavkarocistaPK.rb}" />
+                                </p:column>
+
+                                <p:column   headerText="Usluga">
+                                    <h:outputText value="#{stavka.uslugaID.nazivUsluge}" />
+                                </p:column>
+                                <p:column  headerText="Opis">    
+                                    <h:outputText value="#{stavka.uslugaID.opis}" />
+                                </p:column>
+                                <p:column  headerText="Cena usluge">    
+                                    <h:outputText value="#{stavka.uslugaID.cena}" />
+                                </p:column>
+                                <f:facet name="footer">  
+                                     <h:outputText value="Ukupna cena:"  />                                                                               
+                                     
+                                     <p:inputText style="width: 200px; margin-left: 50px;" value="#{rocisteBean.rociste.ukupnaCena}" required="true" disabled="true" />
+                                   
+                                    <p:commandButton style="width: 130px;" disabled="#{rocisteBean.rociste.stavkarocistaCollection.size() == 0}" id="deleteButton" value="Obriši stavku" icon="ui-icon-trash"  
+                                                     action="#{rocisteBean.izvrsiValidaciju()}"  ajax="true"/>  
+                                </f:facet>             
+                            </p:dataTable>
+                             
+                            <p:commandButton value="Sačuvaj ročište" style="margin-left: 400px;margin-top: 10px; height: 30px; width: 130px;" action="#{rocisteBean.sacuvajRociste()}" update=":predmet"  />
+                        </p:panel>
+                    </h:form>
+                    <h:form>
+                        <p:confirmDialog widgetVar="obrisiDlg" header="Brisanje stavke ročišta" message="Da li ste sigurni da želite da obrišete stavku?">
+                            <p:commandButton value="Ne" style="float:right;" oncomplete="obrisiDlg.hide()" ></p:commandButton>
+                            <p:commandButton value="Da" style="float:right;" action="#{rocisteBean.izbrisiStavku()}" oncomplete="obrisiDlg.hide()" update=":predmet:stavke"></p:commandButton>
+                            
+                        </p:confirmDialog>
+                    </h:form>
+                    <h:form id="forma">
+                        <p:dialog id="stavka" widgetVar="dodajStavku" header="Nova stavka" style="width:200px;" resizable="false" modal="true" >
+
+                            <table>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td style="width:100px;"> <h:outputText value="Usluga:" /></td>
+                                        <td> <p:selectOneMenu value="#{rocisteBean.stavka.uslugaID}" converter="uslugaKonverter" style="width:135px;" >
+                                                <f:selectItems value="#{uslugaBean.vratiUsluge()}" var="usluga" itemValue="#{usluga}" itemLabel="#{usluga.nazivUsluge}" />
+                                            </p:selectOneMenu></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <p:commandButton oncomplete="if (!args.validationFailed) dodajStavku.hide();" value="Dodaj" ajax="true" action="#{rocisteBean.dodajStavku()}" update=":predmet:stavke" style="float:right;" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p:dialog >
+                    </h:form>
+                </c:if>
+            </ui:define>
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

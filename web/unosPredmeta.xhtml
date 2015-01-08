@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}">
+                    <h:form id="predmet" >                   
+                        <p:panel header="Unos predmeta" style="width:520px; margin-left: 70px;" >
+                            <table id="tabelaPredmet" style="width:500px;" border="0" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                    <!--<tr>
+                                        <td>Izaberite advokata:</td>
+                                        <td>
+                                            <p:selectOneMenu id="advokat" style="width:200px;" value="#{predmetBean.predmet.advokatID}" converter="advokatKonverter">
+                                                <f:selectItems value="#{advokatBean.vratiAdvokate()}" var="advokat" itemLabel="#{advokat.toString()}" itemValue="#{advokat}">    
+                                                </f:selectItems>
+                                            </p:selectOneMenu>
+
+                                        </td>
+
+                                    </tr>-->
+                                    <tr>
+                                        <td><h:outputText value="Advokat: " /></td>                                                         
+                                        <td> <p:inputText disabled="true" style="width:200px;" value="#{loginBean.korisnik.toString()}"/></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>Izaberite klijenta:</td>
+                                        <td>
+
+                                            <p:selectOneMenu id="klijent" style="width:200px;" value="#{predmetBean.predmet.klijentID}" converter="klijentKonverter">
+                                                <f:selectItems value="#{klijentBean.vratiSveKlijente()}" var="klijent" itemLabel="#{klijent.toString()}" itemValue="#{klijent}">    
+                                                </f:selectItems>
+                                            </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><h:outputText value="Datum: " /></td>                                                         
+                                        <td> <p:inputText disabled="true" style="width:200px;" value="#{predmetBean.predmet.datum}" converter="datumKonverter"/></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> <h:outputText value="Naziv predmeta: " /></td>
+                                        <td><p:inputText  required="true" style="width:200px;" requiredMessage="Naziv je obavezno polje" value="#{predmetBean.predmet.naziv}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td> <h:outputText value="Pravni osnov: " /></td>
+                                        <td><p:inputText  required="true" style="width:200px;" requiredMessage="Pravni osnov je obavezno polje" value="#{predmetBean.predmet.pravniOsnov}" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Opis:</td>
+                                        <td>
+                                            <p:inputTextarea required="true" style="width:200px;" requiredMessage="Morate uneti opis" value="#{predmetBean.predmet.problem}"  /> 
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td></td>
+                                        <td style="padding-right: 65px;"><p:commandButton style="float: right;"  value="Sačuvaj predmet" action="#{predmetBean.sacuvajPredmet()}" update=":predmet" ajax="true"/></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p:panel>
+                    </h:form>
+                </c:if>
+            </ui:define>
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

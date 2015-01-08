@@ -1,0 +1,328 @@
+
+
+
+#top {
+    position: relative;
+    height: 200px;
+    
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: aliceblue;
+    margin: 0px 0px 10px 0px;  
+}
+
+.title {
+    float: left;
+    color: #4f4f4f;
+    margin-right: 5px;
+    margin-top: 80px;
+    font-family: sans-serif;
+    font-size: 42px;
+}
+
+#top span {
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+#top img {
+    border-radius: 5px;
+}
+
+#left {
+    position: relative;
+    float:left;
+    width:200px;
+    margin-bottom: 10px;
+}
+#p_clockid{
+    float: right;
+    
+}
+
+#right {
+    position: relative;
+    float:right;
+    width:250px;
+   
+
+    margin-bottom: 65px;
+}
+
+#bottom {
+    clear: both;
+    position: relative;
+    background-color: lightblue;
+    padding-top: 5px;  
+    padding-bottom: 30px;
+    height: 15px;
+}
+
+#left submenu{
+
+    border: 5px solid red;
+}
+
+
+.ui-panelmenu-content{
+    margin-top: 1px!important;
+    
+
+    margin-bottom: 5px;
+}
+
+
+#left li{
+    font-size:12px;
+}
+
+#left a:hover {
+    background-color: lightblue;
+}
+#log {
+    background-color: lightblue;
+    height:25px;
+    margin-bottom: 3px;
+}
+#vrh{
+    background-color: lightblue;
+    height:20px;
+    font-family: Cambria;
+    text-align: center;
+    font-size: 20px;
+    
+}
+#content {
+    width:80%;
+    margin-left: 305px;
+    text-align: justify;
+    
+}
+body {
+    font: arial;
+    background:#fafafa;
+    margin: 0;
+    padding: 0;
+    color: #4f4f4f;
+}
+.ui-panel-titlebar{
+    font-size: 18px;
+    height:20px;
+    background-color: wheat;
+}
+.ui-panel{
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+
+.ui-panel input{
+    margin-bottom: 4px;
+}
+.ui-datepicker {
+    width: 200px;
+    height:200px;
+    font-size: 12px
+}
+.ui-inputtext{
+    font-size: 12px!important
+}
+.ui-selectonemenu-item {
+    font-size: 12px;
+}
+
+.ui-fileupload{
+    width: 200px;
+    margin-left: 50px;
+
+}
+
+.ui-growl-title{
+    font-size: 14px;
+}
+.ui-datatable {
+    /*width: 600px;*/
+
+}
+.ui-state-default{
+    background-color: wheat!important;
+}
+.ui-inputtext{
+    background-color: white;
+}
+.ui-datatable-footer{
+    background-color: lightblue;
+}
+.ui-button{
+    background-color: lightgrey!important;
+}
+
+.ui-widget-header {
+    background-color: wheat!important;
+    
+}
+.ui-clock{
+	padding:4px 10px;
+/*        float: right;
+        margin-top: 50px;*/
+}
+.ui-button-text-icon-left{
+    background-color: wheat;
+}
+.ui-datatable-header input{
+    float:right;
+}
+
+.ui-datatable-header span{
+    float:right;
+
+}
+
+.ui-dt-c{
+    height:20px;   
+}
+.ui-dt-c span{
+    font-size: 12px;
+    float:left;
+}
+
+.ui-dt-c input{
+    height:10px;
+}
+.ui-widget-content {
+    font-size:14px;
+}
+.ui-datatable-data{
+    height:50px;
+}
+.ui-datatable-footer{
+    height:20px;
+}
+.ui-button{
+    width:100px;  
+}
+
+.ui-button-text{
+    font-size: 12px;
+}
+
+#ui-button{
+    float:right;
+}
+
+#tabelaUsluga{
+    width: 400px;
+    font-family: Arial,sans-serif;
+    color:#4f4f4f;
+    font-size: 14px;
+}
+
+#tabelaUsluga input{
+    width:200px;
+}
+
+
+.ui-spinner-button{
+    width: 15px;
+    padding: 0px;
+}
+
+.ui-spinner-input {
+    width: 20px;
+    height:20px;
+}
+
+.ui-panel input{
+    margin-bottom: 0;
+}
+
+.ui-datepicker-trigger {
+    width:50px;   
+    margin-left: 5px;
+}
+
+#popupButtonCal_input{
+    height:15px;
+}
+.ui-datepicker-trigger{
+    margin-left: 5px;
+}
+
+.ui-selectmanycheckbox label{
+    font-size: 12px;
+    margin-top: -2px;
+}
+
+
+.ui-widget-content a{
+    text-decoration: none;  
+    color: #4f4f4f;
+    font-size: 12px;
+}
+
+.ui-datatable thead th{
+    height: 20px;
+}
+
+.ui-dt-c{
+    height: auto;
+}
+
+.ui-panelgrid {
+    width:600px;
+}
+#formPretraga input{
+    height: 20px;
+}
+
+#formPretraga {
+    font-family: Arial,sans-serif;
+    color:#4f4f4f;
+    font-size: 14px;
+}
+
+#right{
+    width:250px;
+    height: 530px;
+    /*background-color: yellowgreen;*/
+}
+
+#korisnik{
+    border: #ADD8E6;
+    border-style: groove;
+    border-width: 5px;
+    float: right;
+}
+
+#content {
+    width: 690px;
+   
+}
+
+
+#login input{
+   width: 500px; 
+}
+
+.uTabela {
+    background-color: wheat!important;
+}
+.output{
+    background-color: white!important;
+}
+
+.ui-datatable-data {
+    background-color: white!important;
+}
+
+.ui-inputfield{
+    background-color: white!important;
+}
+.ui-datepicker .ui-datepicker-calendar .ui-state-default {
+  background-color: white!important;  
+}
+
+.ui-growl-item {
+   background-color: lightsteelblue!important;
+}

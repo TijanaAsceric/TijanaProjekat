@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}">
+                    <h:form id="usluga" >
+
+                        <p:panel header="Unos usluge" style="width:520px; margin-left: 70px;" >
+                            <table id="tabelaUsluga" style="width:500px;" border="0" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                    <tr>
+                                        <td>Naziv usluge:</td>
+                                        <td><p:inputText id="txtPnaziv" value="#{uslugaBean.usluga.nazivUsluge}" required="true" style="width:200px;" requiredMessage="Naziv je obavezno polje"/></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Cena usluge:</td>
+                                        <td><p:inputText id="txtPiznos" value="#{uslugaBean.usluga.cena}" required="true" style="width:200px;" requiredMessage="Cena je obavezno polje"/></td>
+                                    </tr>
+                                   
+                                   <tr>
+                                        <td>Opis usluge:</td>
+                                        <td><p:inputTextarea id="txtPopis" value="#{uslugaBean.usluga.opis}" required="true" style="width:200px;" requiredMessage="Opis je obavezno polje"/></td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td></td>
+                                        <td><p:commandButton style="float:right;margin-right: 35px;"  value="Sacuvaj uslugu" action="#{uslugaBean.sacuvajUslugu()}" update=":usluga" ajax="true"/></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p:panel>
+                    </h:form>
+                </c:if>
+            </ui:define>
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

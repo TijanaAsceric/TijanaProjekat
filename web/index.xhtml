@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/templateCss.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}" >
+                    
+                    <div id="vrednosti">
+                        <h2>Naše vrednosti</h2>
+                        <p><h3>Efikasnost</h3>
+Radimo dinamično i orijentisani smo ka efikasnom postizanju ciljeva naših klijenata. Radimo suvereno vladajući advokatskim zanatom, uz poznavanje pravnog ambijenta u kojem radimo i uvek ekonomski optimirajući solucije za klijenta.</p>
+
+<p><h3>Saradnja sa klijentima</h3>
+Veliki značaj poklanjamo razgovorima sa našim klijentima. Tokom ovih razgovora do detalja rasvetljavamo poslovne aspekte rešenja koja treba da se strukturišu za klijenta. Naše klijente u svakoj prilici možemo lično savetovati na nemačkom, engleskom, ruskom i srpskom jeziku.</p>
+
+
+
+<p><h3>Timski rad</h3>
+Do rešenja dolazimo timskim radom. Timove formiramo u skladu sa stručnim zahtevima klijenata.</p>
+
+<p><h3>Kreativnost</h3>
+Kreativno misliti i raditi – to je od odlučujućeg značaja za poslovanje u dinamičnom pravnom okviru srpskog tržišta. Nova pravna regulativa se dinamički razvija, stoga je naša kreativnost jedan od ključnih imenilaca našeg uspeha. Za naše klijente izrađujemo rešenja koja su praktična i delotvorna u postizanju njihovih poslovnih ciljeva.</p>
+                       
+                    </div>
+
+
+                </c:if>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

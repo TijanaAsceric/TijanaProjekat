@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}">
+                    <h:form id="klijent" >                   
+                        <p:panel header="Unesite podatke o klijentu" style="width:520px; margin-left: 70px;" >
+                            <table id="tabelaPregled" style="width:500px;" border="0" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                      <tr>
+                                        <td>Ime:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.ime}" required="true" requiredMessage="Ime je obavezno polje"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prezime:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.prezime}" required="true" requiredMessage="Prezime je obavezno polje"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.email}" required="true" requiredMessage="Email je obavezno polje"/>
+                                        </td>
+                                    </tr>  
+                                    <tr>
+                                        <td>Telefon:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.fiksniTelefon}" required="true" requiredMessage="Telefon je obavezno polje"/>
+                                        </td>
+                                    </tr>  
+                                    <tr>
+                                        <td>Mobilni:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.mobilniTelefon}" required="true" requiredMessage="Mobilni je obavezno polje"/>
+                                        </td>
+                                    </tr>  
+                                    <tr>
+                                        <td>Mesto</td>
+                                        <td>
+                                            <p:selectOneMenu id="mesto" style="width:200px;" value="#{klijentBean.klijent.ptt}" converter="mestoKonverter">
+                                                <f:selectItems value="#{mestoBean.vratiMesta()}" var="mesto" itemLabel="#{mesto.naziv}" itemValue="#{mesto}">    
+                                                </f:selectItems>
+                                            </p:selectOneMenu>
+
+                                        </td>
+
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Ulica:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.ulica}" required="true" requiredMessage="Ulica je obavezno polje" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Broj:</td>
+                                        <td>
+                                            <p:inputText style="width:200px;" value="#{klijentBean.klijent.broj}" required="true" requiredMessage="Broj je obavezno polje" />
+                                        </td>
+                                    </tr>
+                                  
+                                </tbody>
+                            </table>
+                            <p:commandButton style ="margin-left:350px;"  value="Unesi klijenta" action="#{klijentBean.sacuvajKlijenta()}" update=":klijent" ajax="true"/>
+                        </p:panel>
+                    </h:form>
+                </c:if>
+            </ui:define>
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

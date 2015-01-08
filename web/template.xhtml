@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:view>
+        <h:head>
+            
+            <title>Advokatska kancelarija</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="./resources/css/templateCssO.css" rel="stylesheet" type="text/css" />
+        </h:head>
+
+        <h:body>
+            <div id="vrh">Advokatska kancelarija</div>
+            <div style="clear:both; height:120px; background:#fff url(./resources/slike/gore.jpg);"> 
+
+            </div>
+
+            <div id="log" class="alert alert-danger">
+                <h:form>
+
+                    <p:commandLink style="float:right; margin-right: 5px; margin-top: 7px; font-family: Arial, sans-serif;text-decoration: none; color: #4f4f4f; font-weight: bold; font-size: 13px;" value="Odjavite se" oncomplete="dlgLogOut.show()">
+                        
+                    </p:commandLink>   
+
+                    <p:confirmDialog header="Odjavi se" widgetVar="dlgLogOut" message="Da li ste sigurni da želite da se odjavite?">
+                        <p:commandButton style="float:right;" value="Ne" oncomplete="dlgLogOut.hide()" />
+                        <p:commandButton style="float:right;" value="Da" action="#{loginBean.izlogujSe()}" oncomplete="dlgLogOut.hide()" />
+                    </p:confirmDialog>
+                </h:form>
+                <c:if test="${!loginBean.ulogovan}" >
+                    <h:form id="login">             
+                        <p:dialog id="dialog"  modal="true" showEffect="fade" closable="false" visible="true" header="Prijava na sistem" resizable="false" style="font-size: 12px;">  
+
+                            <h:panelGrid columns="2" cellpadding="5">  
+                                <h:outputLabel for="username" value="Korisničko ime:" />  
+                                <p:inputText style="width: 150px;" value="#{loginBean.korisnik.username}"   
+                                             id="username" required="true" label="username" requiredMessage="Korisničko ime je obavezno polje"/>  
+
+                                <h:outputLabel for="password" value="Korisnička šifra:" />  
+                                <h:inputSecret style="width: 155px;" value="#{loginBean.korisnik.password}"   
+                                               id="password" required="true" label="password" requiredMessage="Korisnička šifra je obavezno polje" />  
+
+                                <f:facet name="footer">  
+                                    <p:commandButton style="float: right;" id="loginButton" value="Prijavi se" update="growl"   
+                                                     actionListener="#{loginBean.login}" ajax="false" /> 
+
+                                </f:facet>  
+                            </h:panelGrid>  
+
+                        </p:dialog>  
+
+                    </h:form>
+                </c:if>
+                <ui:insert name="log">Log</ui:insert>
+                <div style="clear:both"></div>
+            </div>
+
+
+            <div id="left">
+                <h:form >  
+                    <p:growl id="messages" sticky="false" autoUpdate="true"/>  
+                    <p:panelMenu style="width: 300px;">  
+                        <p:submenu label="Klijenti">  
+                            <p:menuitem value="Unos klijenta" url="unosKlijenta.xhtml"/>   
+                            <p:menuitem value="Pretraga klijenata" url="pretragaKlijenta.xhtml"></p:menuitem>
+                        </p:submenu>  
+                        <p:submenu label="Predmeti i ročišta">  
+                            <p:menuitem value="Unos predmeta" url="unosPredmeta.xhtml"/>   
+                            <p:menuitem value="Pretraga predmeta" url="pretragaPredmeta.xhtml"></p:menuitem>
+                        </p:submenu>  
+                        <p:separator />  
+                        <c:if test="${loginBean.ulogovan and loginBean.admin}" >
+                        <p:submenu label="Advokat i usluge" >  
+                            <p:menuitem value="Unos advokata" url="unosAdvokata.xhtml"/>   
+                            <p:menuitem value="Unos usluge" url="unosUsluge.xhtml"></p:menuitem>
+                        </p:submenu>
+                        </c:if>
+                    </p:panelMenu>  
+
+                </h:form> 
+                 <h:form>
+                    <h2 style="margin-top:0;">Vreme</h2>
+                    <p:clock pattern="HH:mm:ss" id="p_clockid" />
+                </h:form>
+                
+                <ui:insert name="left">left</ui:insert>
+            </div>
+
+            <div id="right">
+               
+                 <c:if test="#{loginBean.ulogovan}" >
+                    
+                     <div id="korisnik">
+                        <table style="float: inside; font-family: Arial, sans-serif; color: #000000;font-size: 14px;">
+                            <tr>
+                                <td><strong><h:outputText value="Korisnik: " /></strong> </td><td><h:outputText value="#{loginBean.korisnik.toString()}" /></td>
+                            </tr>
+                             <tr>
+                                 <td><strong><h:outputText value="Tip korisnika: " /></strong> </td><td><h:outputText value="#{loginBean.vratiTipKorisnika()}" /></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong><h:outputText value="E-mail" /></strong></td> <td><h:outputText  value="#{loginBean.korisnik.email}" /></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong><h:outputText value="Datum:" /></strong></td> <td><h:outputText  value="#{loginBean.vratiDatum()}" /></td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                     
+
+
+                </c:if>
+                  <div id="right">
+                 <div id="slike" >
+                     <img src="./resources/slike/advokatskakanc.jpg" style=" padding-left: 7px; padding-top: 7px; float: right;"/>
+                
+               
+                 </div>
+                 <ui:insert name="right"></ui:insert>
+            </div>
+                
+            </div>
+            <div id="content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+            <div id="bottom" closable="true" collapsible="true">
+                <p style="font-family: sans-serif; font-size: 14px; color: #4f4f4f; margin-left: 600px;">Copyright © 2014 Tijana Asceric</p>
+                <ui:insert name="bottom">Bottom</ui:insert>
+            </div>
+        </h:body>
+    </f:view>
+</html>

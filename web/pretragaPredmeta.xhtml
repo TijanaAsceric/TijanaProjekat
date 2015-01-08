@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/templateCss.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="log">
+
+
+            </ui:define>
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="right">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <c:if test="#{loginBean.ulogovan}">
+                    <h:form id="pocetna" style="padding-top: 0px">
+                       <p:panel header="Pretraga predmeta" style="width:600px; margin-left: 55px;" >
+                        <table style="width:600px;">
+                            <tbody>
+
+                                <tr style="height:50px;">
+                                    <td>  <h:outputText value="Izaberite klijenta "  style="font-family: Arial,sans-serif; color:#4f4f4f; font-size: 14px;" /> 
+                                    </td>
+                                    <td>
+                                        <p:selectOneMenu id="predmet" style="width:200px;" value="#{predmetBean.klijent}" converter="klijentKonverter">
+                                            <f:selectItems value="#{klijentBean.vratiSveKlijente()}" var="klijent" itemLabel="#{klijent.toString()}" itemValue="#{klijent}">    
+                                            </f:selectItems>
+                                        </p:selectOneMenu>
+
+                                    </td>
+                                
+                               
+                                    
+                                    
+                                    <td style="padding:0;"><p:commandButton style="width:100px; margin-right: 32px;" action="#{predmetBean.vratiPredmetePoUslovu()}"  value="Pronađi" update="predmeti" /></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                        <p:dataTable  id="predmeti" value="#{predmetBean.prikazaniPredmeti}" var="p" emptyMessage="Nema predmeta po tim kriterijumima" style="width:550px;">                
+
+                            <p:column headerText="Klijent">
+                                <h:outputText value="#{p.klijentID.toString()}" />    
+                            </p:column>
+                            <p:column headerText="Naziv">
+                                <h:outputText value="#{p.naziv}" />
+                            </p:column>
+                            <p:column headerText="Opis problema">
+                                <h:outputText value="#{p.problem}" />
+                            </p:column>
+                            
+                            <p:column headerText="Pravni osnov">
+                                <h:outputText value="#{p.pravniOsnov}" />
+                            </p:column>
+                            <p:column headerText="Rocista" >                           
+                                <p:commandLink  value="Unesi rociste"  action="#{zajednickiBean.zapamtiPredmet(p)}" />      
+                            </p:column>
+                        </p:dataTable>
+                       </p:panel>
+                    </h:form>
+
+                   
+
+                </c:if>
+            </ui:define>
+            <ui:define name="bottom">
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
